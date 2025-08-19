@@ -1,0 +1,18 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Voice wave icon -->
+  <g>
+    <!-- Sound waves -->
+    <path d="M8 30C8 30 12 20 20 20C28 20 32 30 32 30C32 30 28 40 20 40C12 40 8 30 8 30Z" fill="#FF5722" opacity="0.8"/>
+    <path d="M4 30C4 30 10 15 20 15C30 15 36 30 36 30C36 30 30 45 20 45C10 45 4 30 4 30Z" fill="#FF5722" opacity="0.4"/>
+    <path d="M0 30C0 30 8 10 20 10C32 10 40 30 40 30C40 30 32 50 20 50C8 50 0 30 0 30Z" fill="#FF5722" opacity="0.2"/>
+    
+    <!-- Gateway/Portal element -->
+    <rect x="42" y="18" width="4" height="24" fill="#FF5722" rx="2"/>
+    <rect x="50" y="15" width="4" height="30" fill="#FF5722" rx="2"/>
+    <rect x="58" y="12" width="4" height="36" fill="#FF5722" rx="2"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="75" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#1F2937">Voicegate</text>
+  <text x="75" y="42" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#6B7280">Solutions</text>
+</svg>

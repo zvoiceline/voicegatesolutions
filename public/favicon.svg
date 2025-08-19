@@ -1,0 +1,13 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Voice wave icon optimized for favicon -->
+  <g>
+    <!-- Sound waves -->
+    <path d="M4 16C4 16 6 10 10 10C14 10 16 16 16 16C16 16 14 22 10 22C6 22 4 16 4 16Z" fill="#FF5722" opacity="0.9"/>
+    <path d="M2 16C2 16 5 8 10 8C15 8 18 16 18 16C18 16 15 24 10 24C5 24 2 16 2 16Z" fill="#FF5722" opacity="0.5"/>
+    
+    <!-- Gateway/Portal element -->
+    <rect x="20" y="10" width="2" height="12" fill="#FF5722" rx="1"/>
+    <rect x="24" y="8" width="2" height="16" fill="#FF5722" rx="1"/>
+    <rect x="28" y="6" width="2" height="20" fill="#FF5722" rx="1"/>
+  </g>
+</svg>
