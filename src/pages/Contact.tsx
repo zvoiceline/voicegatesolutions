@@ -178,7 +178,7 @@ function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Us</h2>
                 <p className="text-lg text-gray-600 mb-8">
                   Reach out to us through any of the channels below. Our team is ready to 
                   discuss your language service needs and provide a customized solution.
@@ -234,7 +234,7 @@ function Contact() {
 
             {/* Contact Form */}
             <div className="bg-neutral-50 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">Request Service</h3>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-6">Contact Us</h3>
               
               {submitted && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">

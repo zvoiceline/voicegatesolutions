@@ -44,7 +44,7 @@ function Services() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl">
-                  Get Started Today
+                  Contact Us
                 </Link>
                 <Link to="#services" className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 font-semibold rounded-lg hover:bg-primary-500 hover:text-white transition-all duration-200">
                   View Services
@@ -168,8 +168,8 @@ function Services() {
                     HD video quality
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -196,8 +196,8 @@ function Services() {
                     Specialized expertise
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -224,8 +224,8 @@ function Services() {
                     200+ languages
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -252,8 +252,8 @@ function Services() {
                     Certified interpreters
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -280,8 +280,8 @@ function Services() {
                     Confidentiality assured
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -308,8 +308,8 @@ function Services() {
                     Technical terminology
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
             </div>
@@ -342,8 +342,8 @@ function Services() {
                     Quality assurance
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -370,8 +370,8 @@ function Services() {
                     Technical integration
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -398,8 +398,8 @@ function Services() {
                     Digital strategy
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -426,8 +426,8 @@ function Services() {
                     Industry standards
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -454,8 +454,8 @@ function Services() {
                     Research papers
                   </li>
                 </ul>
-                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors w-full block text-center">
-                  Get Started
+                <Link to="/contact" className="bg-primary-500 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors w-full block text-center">
+                  Contact Us
                 </Link>
               </div>
 
@@ -538,26 +538,27 @@ function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-600 opacity-90 backdrop-blur-sm"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Break Down Language Barriers?
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
             Join thousands of satisfied clients who trust Voicegate Solutions for their language service needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white text-primary-500 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-100 transition-colors"
+              className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-100 transition-colors"
             >
-              Get Started Today
+              Contact Us
             </Link>
             <Link
-              to="/contact"
-              className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-500 transition-colors"
+              to="/login"
+              className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
             >
-              Schedule Consultation
+              Access Portal
             </Link>
           </div>
         </div>

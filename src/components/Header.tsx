@@ -40,42 +40,101 @@ function Header() {
               
               {activeDropdown === 'services' && (
                 <div 
-                  className="absolute top-full left-0 w-96 bg-white shadow-2xl rounded-lg border border-neutral-200 p-6 z-50"
+                  className="absolute top-full left-0 w-[600px] bg-white shadow-2xl rounded-xl border border-neutral-200 p-8 z-50"
                   onMouseEnter={() => setActiveDropdown('services')}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-3 gap-8">
                     <div>
-                      <h3 className="font-semibold text-neutral-900 mb-3">Interpretation</h3>
-                      <div className="space-y-2">
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <Headphones className="w-4 h-4 mr-2" />
-                          Phone Interpretation
+                      <div className="flex items-center mb-4">
+                        <div className="w-8 h-8 bg-primary-500/10 rounded-lg flex items-center justify-center mr-3">
+                          <Headphones className="w-4 h-4 text-primary-500" />
+                        </div>
+                        <h3 className="font-semibold text-neutral-900">Interpretation Services</h3>
+                      </div>
+                      <div className="space-y-3">
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Phone className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Phone Interpretation</div>
+                            <div className="text-xs text-neutral-500">24/7 instant access</div>
+                          </div>
                         </Link>
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <Globe className="w-4 h-4 mr-2" />
-                          Video Remote
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Globe className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Video Remote</div>
+                            <div className="text-xs text-neutral-500">Face-to-face online</div>
+                          </div>
                         </Link>
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <Users className="w-4 h-4 mr-2" />
-                          On-Site Services
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Users className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">On-Site Services</div>
+                            <div className="text-xs text-neutral-500">In-person interpreters</div>
+                          </div>
                         </Link>
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-neutral-900 mb-3">Specializations</h3>
-                      <div className="space-y-2">
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <Award className="w-4 h-4 mr-2" />
-                          Medical
+                      <div className="flex items-center mb-4">
+                        <div className="w-8 h-8 bg-secondary-500/10 rounded-lg flex items-center justify-center mr-3">
+                          <Award className="w-4 h-4 text-secondary-500" />
+                        </div>
+                        <h3 className="font-semibold text-neutral-900">Specializations</h3>
+                      </div>
+                      <div className="space-y-3">
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Award className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Medical</div>
+                            <div className="text-xs text-neutral-500">HIPAA compliant</div>
+                          </div>
                         </Link>
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <Briefcase className="w-4 h-4 mr-2" />
-                          Legal
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Briefcase className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Legal</div>
+                            <div className="text-xs text-neutral-500">Court certified</div>
+                          </div>
                         </Link>
-                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors">
-                          <FileText className="w-4 h-4 mr-2" />
-                          Business
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <FileText className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Business</div>
+                            <div className="text-xs text-neutral-500">Corporate meetings</div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center mb-4">
+                        <div className="w-8 h-8 bg-primary-400/10 rounded-lg flex items-center justify-center mr-3">
+                          <FileText className="w-4 h-4 text-primary-400" />
+                        </div>
+                        <h3 className="font-semibold text-neutral-900">Translation</h3>
+                      </div>
+                      <div className="space-y-3">
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <FileText className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Document Translation</div>
+                            <div className="text-xs text-neutral-500">Certified accuracy</div>
+                          </div>
+                        </Link>
+                        <Link to="/services" className="flex items-center text-neutral-600 hover:text-primary-500 transition-colors group">
+                          <Globe className="w-4 h-4 mr-3 text-neutral-400 group-hover:text-primary-500" />
+                          <div>
+                            <div className="font-medium">Website Localization</div>
+                            <div className="text-xs text-neutral-500">Global reach</div>
+                          </div>
+                        </Link>
+                        <Link to="/contact" className="flex items-center bg-primary-50 text-primary-600 hover:bg-primary-100 transition-colors p-3 rounded-lg group mt-4">
+                          <Phone className="w-4 h-4 mr-3" />
+                          <div>
+                            <div className="font-medium">Get Quote</div>
+                            <div className="text-xs">Free consultation</div>
+                          </div>
                         </Link>
                       </div>
                     </div>
@@ -132,12 +191,20 @@ function Header() {
               Contact
             </Link>
             
-            <button
-              onClick={handleInterpreterLogin}
-              className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors font-medium"
-            >
-              Get Started
-            </button>
+            <div className="flex space-x-3">
+              <Link
+                to="/contact"
+                className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors font-medium"
+              >
+                Contact Us
+              </Link>
+              <Link
+                to="/careers"
+                className="border-2 border-primary-500 text-primary-500 px-6 py-2 rounded-lg hover:bg-primary-500 hover:text-white transition-colors font-medium"
+              >
+                Join Our Team
+              </Link>
+            </div>
           </nav>
 
           {/* Mobile menu button */}
@@ -182,15 +249,22 @@ function Header() {
                 Contact
               </Link>
               <div className="pt-4 border-t border-neutral-200">
-                <button
-                  onClick={() => {
-                    handleInterpreterLogin();
-                    setIsMenuOpen(false);
-                  }}
-                  className="bg-primary-500 text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors font-medium w-full"
-                >
-                  Get Started
-                </button>
+                <div className="space-y-3">
+                  <Link
+                    to="/contact"
+                    className="bg-primary-500 text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors font-medium w-full block text-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                  <Link
+                    to="/careers"
+                    className="border-2 border-primary-500 text-primary-500 px-6 py-3 rounded-lg hover:bg-primary-500 hover:text-white transition-colors font-medium w-full block text-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Join Our Team
+                  </Link>
+                </div>
               </div>
             </nav>
           </div>

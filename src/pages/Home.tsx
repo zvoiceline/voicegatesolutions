@@ -40,14 +40,14 @@ function Home() {
                   to="/contact"
                   className="bg-primary-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 transition-colors flex items-center justify-center group"
                 >
-                  Get Started
+                  Contact Us
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
-                  to="/services"
+                  to="/careers"
                   className="border-2 border-primary-500 text-primary-500 px-8 py-4 rounded-lg font-semibold hover:bg-primary-500 hover:text-white transition-colors flex items-center justify-center"
                 >
-                  View Services
+                  Join Our Team
                 </Link>
               </div>
               
@@ -366,7 +366,7 @@ function Home() {
                 to="/contact"
                 className="bg-primary-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors inline-flex items-center group"
               >
-                Request Consultation
+                Contact Us
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -405,26 +405,29 @@ function Home() {
             </div>
           </div>
           
-          <div className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl p-12 text-center text-white mt-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Break Language Barriers?
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Join thousands of satisfied clients who trust us with their interpretation and translation needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="bg-white text-primary-500 px-8 py-4 rounded-lg font-semibold hover:bg-neutral-100 transition-colors"
-              >
-                Get Started Today
-              </Link>
-              <Link
-                to="/services"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-500 transition-colors"
-              >
-                Learn More
-              </Link>
+          <div className="relative rounded-2xl p-12 text-center text-white mt-16 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 opacity-90 backdrop-blur-sm"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Break Language Barriers?
+              </h2>
+              <p className="text-xl mb-8 opacity-90">
+                Join thousands of satisfied clients who trust us with their interpretation and translation needs.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/contact"
+                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-neutral-100 transition-colors"
+                >
+                  Contact Us
+                </Link>
+                <Link
+                  to="/careers"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
+                >
+                  Join Our Team
+                </Link>
+              </div>
             </div>
           </div>
         </div>
