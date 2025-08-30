@@ -9,7 +9,8 @@ import {
   Users,
   UserCheck,
   MessageSquare,
-  FolderOpen
+  FolderOpen,
+  Settings
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -29,6 +30,7 @@ function Sidebar({ userType }: SidebarProps) {
 
   const adminMenuItems = [
     { path: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { path: '/admin/interpreter-manager', label: 'Interpreter Manager', icon: Settings },
     { path: '/admin/users', label: 'User Management', icon: Users },
     { path: '/admin/interpreters', label: 'Interpreters', icon: UserCheck },
     { path: '/admin/clients', label: 'Clients', icon: Users },

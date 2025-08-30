@@ -18,22 +18,37 @@ import {
 } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
+export type UserRole = 'super_admin' | 'interpreter_manager' | 'interpreter' | 'client';
+export type UserStatus = 'active' | 'pending' | 'approved' | 'suspended' | 'rejected';
+export type PermissionScope = 'all' | 'interpreters_only' | 'clients_only';
+
 export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'interpreter' | 'admin' | 'client';
-  status?: 'active' | 'pending' | 'onboarding' | 'suspended';
+  role: UserRole;
+  status?: UserStatus;
+  permissionScope?: PermissionScope; // Only for admin roles
+  approvedBy?: string; // ID of admin who approved
+  approvedAt?: any;
+  invitedBy?: string; // ID of admin who invited
+  invitedAt?: any;
   createdAt?: any;
   updatedAt?: any;
+  lastLogin?: any;
   profile?: {
     phone?: string;
     address?: string;
     languages?: string[];
     specializations?: string[];
+    certifications?: string[];
     availability?: string;
     timezone?: string;
     biography?: string;
+    country?: string;
+    experience?: string;
+    hourlyRate?: number;
+    preferredContactMethod?: 'email' | 'phone' | 'both';
   };
 }
 
@@ -76,14 +91,24 @@ class AuthService {
     email: string,
     password: string,
     name: string,
-    role: 'interpreter' | 'admin',
-    currentUserId: string
+    role: UserRole,
+    currentUserId: string,
+    permissionScope?: PermissionScope
   ): Promise<User> {
     try {
-      // Verify current user is admin
+      // Verify current user has admin privileges
       const currentUserDoc = await getDoc(doc(db, 'users', currentUserId));
-      if (!currentUserDoc.exists() || currentUserDoc.data().role !== 'admin') {
-        throw new Error('Unauthorized: Only admins can create users');
+      if (!currentUserDoc.exists()) {
+        throw new Error('Current user not found');
+      }
+      
+      const currentUser = currentUserDoc.data();
+      const canCreateUser = currentUser.role === 'super_admin' || 
+                           (currentUser.role === 'interpreter_manager' && 
+                            ['interpreter', 'client'].includes(role));
+      
+      if (!canCreateUser) {
+        throw new Error('Unauthorized: Insufficient permissions to create this user type');
       }
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -98,7 +123,10 @@ class AuthService {
         email: firebaseUser.email!,
         name,
         role,
-        status: role === 'admin' ? 'active' : 'pending',
+        status: role === 'super_admin' || role === 'interpreter_manager' ? 'active' : 'pending',
+        permissionScope: ['super_admin', 'interpreter_manager'].includes(role) ? (permissionScope || 'all') : undefined,
+        invitedBy: currentUserId,
+        invitedAt: serverTimestamp(),
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       };
@@ -206,7 +234,7 @@ class AuthService {
   }
 
   // Update user status (admin only)
-  async updateUserStatus(userId: string, status: User['status']): Promise<void> {
+  async updateUserStatus(userId: string, status: UserStatus): Promise<void> {
     try {
       await updateDoc(doc(db, 'users', userId), {
         status,
@@ -215,6 +243,139 @@ class AuthService {
     } catch (error: any) {
       throw new Error(error.message || 'Failed to update user status');
     }
+  }
+
+  // Self-registration for clients and interpreters
+  async selfRegister(
+    email: string,
+    password: string,
+    name: string,
+    role: 'interpreter' | 'client',
+    profileData?: Partial<User['profile']>
+  ): Promise<User> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const firebaseUser = userCredential.user;
+      
+      // Update Firebase Auth profile
+      await updateProfile(firebaseUser, { displayName: name });
+      
+      // Create user document in Firestore with pending status
+      const userData: User = {
+        id: firebaseUser.uid,
+        email: firebaseUser.email!,
+        name,
+        role,
+        status: 'pending',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        profile: profileData || {}
+      };
+      
+      await setDoc(doc(db, 'users', firebaseUser.uid), userData);
+      
+      return userData;
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to register user');
+    }
+  }
+
+  // Approve user (for admins)
+  async approveUser(userId: string, currentUserId: string): Promise<void> {
+    try {
+      // Verify current user has admin privileges
+      const currentUserDoc = await getDoc(doc(db, 'users', currentUserId));
+      if (!currentUserDoc.exists()) {
+        throw new Error('Current user not found');
+      }
+      
+      const currentUser = currentUserDoc.data();
+      if (!['super_admin', 'interpreter_manager'].includes(currentUser.role)) {
+        throw new Error('Unauthorized: Only admins can approve users');
+      }
+
+      await updateDoc(doc(db, 'users', userId), {
+        status: 'approved',
+        approvedBy: currentUserId,
+        approvedAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to approve user');
+    }
+  }
+
+  // Reject user (for admins)
+  async rejectUser(userId: string, currentUserId: string): Promise<void> {
+    try {
+      // Verify current user has admin privileges
+      const currentUserDoc = await getDoc(doc(db, 'users', currentUserId));
+      if (!currentUserDoc.exists()) {
+        throw new Error('Current user not found');
+      }
+      
+      const currentUser = currentUserDoc.data();
+      if (!['super_admin', 'interpreter_manager'].includes(currentUser.role)) {
+        throw new Error('Unauthorized: Only admins can reject users');
+      }
+
+      await updateDoc(doc(db, 'users', userId), {
+        status: 'rejected',
+        updatedAt: serverTimestamp()
+      });
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to reject user');
+    }
+  }
+
+  // Get pending users for approval
+  async getPendingUsers(currentUserId: string): Promise<User[]> {
+    try {
+      // Verify current user has admin privileges
+      const currentUserDoc = await getDoc(doc(db, 'users', currentUserId));
+      if (!currentUserDoc.exists()) {
+        throw new Error('Current user not found');
+      }
+      
+      const currentUser = currentUserDoc.data();
+      if (!['super_admin', 'interpreter_manager'].includes(currentUser.role)) {
+        throw new Error('Unauthorized: Only admins can view pending users');
+      }
+
+      const usersCollection = collection(db, 'users');
+      const snapshot = await getDocs(usersCollection);
+      
+      return snapshot.docs
+        .map(doc => ({ ...doc.data(), id: doc.id } as User))
+        .filter(user => user.status === 'pending');
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to get pending users');
+    }
+  }
+
+  // Check if user has permission to access certain features
+  hasPermission(user: User, requiredRole: UserRole | UserRole[]): boolean {
+    const roles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+    return roles.includes(user.role) && user.status === 'approved';
+  }
+
+  // Check if user can manage other users based on permission scope
+  canManageUser(currentUser: User, targetUser: User): boolean {
+    if (currentUser.role === 'super_admin') {
+      return true;
+    }
+    
+    if (currentUser.role === 'interpreter_manager') {
+      if (currentUser.permissionScope === 'all') {
+        return ['interpreter', 'client'].includes(targetUser.role);
+      } else if (currentUser.permissionScope === 'interpreters_only') {
+        return targetUser.role === 'interpreter';
+      } else if (currentUser.permissionScope === 'clients_only') {
+        return targetUser.role === 'client';
+      }
+    }
+    
+    return false;
   }
 }
 

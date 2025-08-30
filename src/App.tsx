@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './contexts/AuthContext';
 import { DataProvider } from './contexts/DataContext';
 import PublicLayout from './components/layouts/PublicLayout';
@@ -8,6 +9,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
+import JobApplication from './pages/JobApplication';
+import JobDetails from './pages/JobDetails';
 import InterpreterDashboard from './pages/interpreter/InterpreterDashboard';
 import InterpreterOnboarding from './pages/interpreter/InterpreterOnboarding';
 import InterpreterResources from './pages/interpreter/InterpreterResources';
@@ -19,14 +22,16 @@ import AdminInterpreters from './pages/admin/AdminInterpreters';
 import AdminClients from './pages/admin/AdminClients';
 import AdminResources from './pages/admin/AdminResources';
 import AdminCommunications from './pages/admin/AdminCommunications';
+import InterpreterManager from './pages/admin/InterpreterManager';
 import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <DataProvider>
-        <Router>
+    <HelmetProvider>
+      <AuthProvider>
+        <DataProvider>
+          <Router>
           <div className="min-h-screen bg-gray-50">
             <Routes>
               {/* Public Routes */}
@@ -36,6 +41,12 @@ function App() {
                 <Route path="careers" element={<Careers />} />
                 <Route path="contact" element={<Contact />} />
               </Route>
+              
+              {/* Job Application Route */}
+              <Route path="/job-application" element={<JobApplication />} />
+              
+              {/* Individual Job Details Routes */}
+              <Route path="/careers/:jobId" element={<JobDetails />} />
 
               {/* Auth Route */}
               <Route path="/login" element={<Login />} />
@@ -55,13 +66,14 @@ function App() {
               </Route>
 
               {/* Admin Portal */}
-              <Route path="/admin" element={
+              <Route path="admin" element={
                 <ProtectedRoute allowedRoles={['admin']}>
                   <DashboardLayout userType="admin" />
                 </ProtectedRoute>
               }>
                 <Route index element={<Navigate to="/admin/dashboard" replace />} />
                 <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="interpreter-manager" element={<InterpreterManager />} />
                 <Route path="users" element={<AdminUsers />} />
                 <Route path="interpreters" element={<AdminInterpreters />} />
                 <Route path="clients" element={<AdminClients />} />
@@ -71,8 +83,9 @@ function App() {
             </Routes>
           </div>
         </Router>
-      </DataProvider>
-    </AuthProvider>
+        </DataProvider>
+      </AuthProvider>
+    </HelmetProvider>
   );
 }
 

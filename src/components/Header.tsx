@@ -188,7 +188,7 @@ function Header() {
             </div>
             
             <Link to="/contact" className="text-neutral-700 hover:text-primary-500 font-medium transition-colors">
-              Contact
+              Contact Us
             </Link>
             
             <div className="flex space-x-3">
@@ -246,7 +246,7 @@ function Header() {
                 className="text-neutral-700 hover:text-primary-500 font-medium px-2 py-1 rounded transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                Contact Us
               </Link>
               <div className="pt-4 border-t border-neutral-200">
                 <div className="space-y-3">

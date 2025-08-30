@@ -372,9 +372,9 @@ function Home() {
             </div>
 
             {/* For Advisors */}
-            <div className="bg-gradient-to-br from-secondary-500/10 to-primary-500/10 rounded-2xl p-8 lg:p-12 relative overflow-hidden">
-              <div className="absolute top-4 right-4 w-16 h-16 opacity-20 flex items-center justify-center bg-secondary-500/10 rounded-full">
-                <Person className="w-8 h-8 text-secondary-500" />
+            <div className="bg-gradient-to-br from-primary-500/10 to-secondary-500/10 rounded-2xl p-8 lg:p-12 relative overflow-hidden">
+              <div className="absolute top-4 right-4 w-16 h-16 opacity-20 flex items-center justify-center bg-primary-500/10 rounded-full">
+                <Person className="w-8 h-8 text-primary-500" />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">Join Our Interpreter Network</h3>
               <p className="text-neutral-700 mb-6">
@@ -383,23 +383,23 @@ function Home() {
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-neutral-700">
-                  <Clock className="h-5 w-5 text-secondary-500 mr-3" />
+                  <Clock className="h-5 w-5 text-primary-500 mr-3" />
                   Work anytime, anywhere
                 </li>
                 <li className="flex items-center text-neutral-700">
-                  <Star className="h-5 w-5 text-secondary-500 mr-3" />
+                  <Star className="h-5 w-5 text-primary-500 mr-3" />
                   Competitive hourly rates
                 </li>
                 <li className="flex items-center text-neutral-700">
-                  <CheckCircle className="h-5 w-5 text-secondary-500 mr-3" />
+                  <CheckCircle className="h-5 w-5 text-primary-500 mr-3" />
                   Ongoing training & support
                 </li>
               </ul>
               <Link
                 to="/careers"
-                className="bg-secondary-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary-600 transition-colors inline-flex items-center group"
+                className="bg-primary-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors inline-flex items-center group"
               >
-                Apply Now
+                Join Our Team
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

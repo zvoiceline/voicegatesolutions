@@ -1,16 +1,20 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { authService, User } from '../services/authService';
-
-// User interface is now imported from authService
+import { authService, User, UserRole, UserStatus, PermissionScope } from '../services/authService';
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  createUserByAdmin: (email: string, password: string, name: string, role: 'interpreter' | 'admin') => Promise<User>;
+  selfRegister: (email: string, password: string, name: string, role: 'interpreter' | 'client', profileData?: Partial<User['profile']>) => Promise<User>;
+  createUserByAdmin: (email: string, password: string, name: string, role: UserRole, permissionScope?: PermissionScope) => Promise<User>;
+  approveUser: (userId: string) => Promise<void>;
+  rejectUser: (userId: string) => Promise<void>;
+  getPendingUsers: () => Promise<User[]>;
   updateProfile: (updates: Partial<User>) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   getAllUsers: () => Promise<User[]>;
+  hasPermission: (requiredRole: UserRole | UserRole[]) => boolean;
+  canManageUser: (targetUser: User) => boolean;
   loading: boolean;
 }
 
@@ -62,18 +66,63 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
-  const createUserByAdmin = async (email: string, password: string, name: string, role: 'interpreter' | 'admin'): Promise<User> => {
-    if (!user?.id) {
-      throw new Error('Must be logged in to create users');
-    }
+  const selfRegister = async (email: string, password: string, name: string, role: 'interpreter' | 'client', profileData?: Partial<User['profile']>): Promise<User> => {
     setLoading(true);
     try {
-      const newUser = await authService.createUserByAdmin(email, password, name, role, user.id);
+      const newUser = await authService.selfRegister(email, password, name, role, profileData);
       return newUser;
     } catch (error: any) {
       throw error;
     } finally {
       setLoading(false);
+    }
+  };
+
+  const createUserByAdmin = async (email: string, password: string, name: string, role: UserRole, permissionScope?: PermissionScope): Promise<User> => {
+    if (!user?.id) {
+      throw new Error('Must be logged in to create users');
+    }
+    setLoading(true);
+    try {
+      const newUser = await authService.createUserByAdmin(email, password, name, role, user.id, permissionScope);
+      return newUser;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const approveUser = async (userId: string): Promise<void> => {
+    if (!user?.id) {
+      throw new Error('Must be logged in to approve users');
+    }
+    try {
+      await authService.approveUser(userId, user.id);
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
+  const rejectUser = async (userId: string): Promise<void> => {
+    if (!user?.id) {
+      throw new Error('Must be logged in to reject users');
+    }
+    try {
+      await authService.rejectUser(userId, user.id);
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
+  const getPendingUsers = async (): Promise<User[]> => {
+    if (!user?.id) {
+      throw new Error('Must be logged in to view pending users');
+    }
+    try {
+      return await authService.getPendingUsers(user.id);
+    } catch (error: any) {
+      throw error;
     }
   };
 
@@ -107,15 +156,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
+  const hasPermission = (requiredRole: UserRole | UserRole[]): boolean => {
+    if (!user) return false;
+    return authService.hasPermission(user, requiredRole);
+  };
+
+  const canManageUser = (targetUser: User): boolean => {
+    if (!user) return false;
+    return authService.canManageUser(user, targetUser);
+  };
+
   return (
     <AuthContext.Provider value={{
       user,
       login,
       logout,
+      selfRegister,
       createUserByAdmin,
+      approveUser,
+      rejectUser,
+      getPendingUsers,
       updateProfile,
       resetPassword,
       getAllUsers,
+      hasPermission,
+      canManageUser,
       loading
     }}>
       {children}
